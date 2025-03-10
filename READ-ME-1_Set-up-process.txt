@@ -1,0 +1,144 @@
+Install Vite with React
+	npm create vite@latest
+	cd ##PROJECT-DIRECTORY##	
+	npm install
+	npm run dev
+
+Create basic Componet (Folder) Structure 
+	Create hero portfolio experience Navar and contact - jsx
+	Create index.js for centralized exports 
+	Fill componets with boiler plater content
+
+	// Boiler plate
+	const Portfolio = () => {
+	    return (
+	        <div id="Portfolio" classname="section">
+	            <h1>Portfolio</h1>
+	            <p>this would be portfolio text, not sure how long it would be or could be??001</p>
+	        </div>
+	    );
+	};
+
+	export default Portfolio;
+	// Boiler plate
+
+	Import Componets into index.js
+
+	//IMPORT
+	import Contact from "./Contact";
+	import Experince from "./Experince";
+	import Hero from "./Hero";
+	import Portfolio from "./Portfolio";
+
+	export {
+
+	    Contact, Experince, Hero, Portfolio
+    
+	};
+	//IMPORT
+
+	Call them in our app.jsx 
+
+	//CALL
+	import { Contact, Experince, Hero, Portfolio } from "./componets";
+
+	function App() {
+	  return (
+ 	   <div>
+	      <Hero />
+	      <Experince />
+	      <Portfolio />
+	      <Contact />
+	    </div>
+	  );
+	}
+	//CALL
+
+Install dependencies
+	tailwind css, Framer Motion, Three.js,
+	npm install -D tailwindcss postcss autoprefixer framer-motion three @react-three/fiber @react-three/drei
+
+Config dependencies
+	Step1 : Initialize Tailwind CSS
+    	Create Tailwind Configuration Files: Run the following command to generate the tailwind.config.js and postcss.config.js files:
+	console: npx tailwindcss init -p
+
+	This command creates two files:
+
+    	tailwind.config.js: This is where you can customize your Tailwind setup.
+    	postcss.config.js: This is where you can configure PostCSS.
+
+	Configure Tailwind: Open tailwind.config.js and set up the content array to include your template files.
+
+/** @type {import('tailwindcss').Config} */
+
+module.exports = {
+    content: [
+        "./src/**/*.{js,jsx,ts,tsx}", // Adjust the path according to your project structure
+    ],
+
+    theme: {
+        extend: {},
+    },
+
+    plugins: [],
+
+};
+
+	Add Tailwind Directives to Your CSS (to the top)
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+Step 2: Configure PostCSS with Autoprefixer
+
+Open the postcss.config.js file and add the following configuration:
+
+module.exports = {
+    plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+    }
+}
+
+OTHER DEPENDENCIES
+	
+Usage: Frammer Motion
+When using import and use example 
+
+import { motion } from 'framer-motion';
+
+// Example usage
+const MyComponent = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <h1>Hello, Framer Motion!</h1>
+    </motion.div>
+  );
+
+};
+
+Usage: React Three Fiber
+When using import and use example 
+
+import { Canvas } from '@react-three/fiber';
+import { Box } from '@react-three/drei';
+
+// Example usage
+const My3DComponent = () => {
+  return (
+    <Canvas>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <Box>
+        <meshStandardMaterial attach="material" color="orange" />
+      </Box>
+    </Canvas>
+  );
+
+};

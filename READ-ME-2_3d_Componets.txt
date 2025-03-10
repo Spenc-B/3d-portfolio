@@ -1,0 +1,117 @@
+Create folder for 3d assets in this case assets/3d/
+Grab 3d assets and place them
+
+Create jsx relevent to the 3d object in this case spaceman - creat in componets 
+Import dependenices
+
+import { useAnimations, useGLTF } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Suspense, useEffect, useRef, useState } from "react";
+import spacemanScene from "../assets/3d/spaceman.glb";
+import CanvasLoader from "./Loader";
+
+make the spaceman component 
+
+const Spaceman = ({ scale, position }) => {
+  const spacemanRef = useRef();
+  const { scene, animations } = useGLTF(spacemanScene);
+  const { actions } = useAnimations(animations, spacemanRef);
+
+//include Spaceman GLB code here
+
+};
+
+include the code that allows us to use our Spaceman glb file type
+
+  useEffect(() => {
+    actions["Idle"].play();
+  }, [actions]);
+
+  return (
+    <mesh ref={spacemanRef} position={position} scale={scale} rotation={[0, 2.2, 0]}>
+      <primitive object={scene} />
+    </mesh>
+  );
+
+create a new component Spaceman canvas 
+
+const SpacemanCanvas = ({ scrollContainer }) => {
+// rotation and scroll code
+
+};
+export default SpacemanCanvas;
+
+set two rotations to adjust via the scroll container in case we want to rotate as we scroll
+
+  const [rotationX, setRotationX] = useState(0);
+  const [rotationY, setRotationY] = useState(0);
+
+set the scale and position 
+
+  const [scale, setScale] = useState([2, 2, 2]);
+  const [position, setPosition] = useState([0.2, -0.7, 0]);
+
+use effect will handle that scroll and rotate our Spaceman if we desire
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = scrollContainer.current.scrollTop;
+      const rotationXValue = scrollTop * -0.0006;
+      const rotationYValue = scrollTop * -0.00075;
+      setRotationX(rotationXValue);
+      setRotationY(rotationYValue);
+    };
+
+Window resize for 3d object 
+handle the resize for responsiveness as the window gets smaller
+
+  const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setScale([1, 1, 1]);
+        setPosition([0.2, -0.1, 0]);
+      } else if (window.innerWidth < 1024) {
+        setScale([1.33, 1.33, 1.33]);
+        setPosition([0.2, -0.3, 0]);
+      } else if (window.innerWidth < 1280) {
+        setScale([1.5, 1.5, 1.5]);
+        setPosition([0.2, -0.4, 0]);
+      } else if (window.innerWidth < 1536) {
+        setScale([1.66, 1.66, 1.66]);
+        setPosition([0.2, -0.5, 0]);
+      } else {
+        setScale([2, 2, 2]);
+        setPosition([0.2, -0.7, 0]);
+      }
+    };
+
+Call handlereize constant and add eventlisters for scrol and window resize with a return
+
+    handleResize();
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+	
+    //Cleanup function to remove event listeners when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+
+On useEffect end ensure that the dependency array is called and closed correctly
+	}, [scrollContainer]); // Dependency array; effect runs when scrollContainer changes
+
+Render the 3D canvas or component here (not shown in the provided code)
+
+  return (
+    <canvas>
+      {/* Your 3D rendering logic goes here, using rotation, scale, and position */}
+    </canvas>
+  );
+
+Add Spaceman canvas to our index.js export file
+
+	import SpacemanCanvas from "./Spaceman";
+
+Add glb and gltf asset config to vite.config.js file
+
+	assetsInclude: ['**/*.glb', '**/*.gltf'],
+
