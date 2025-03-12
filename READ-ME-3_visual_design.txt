@@ -4,5 +4,6 @@ Adding 3d Canvas to hero.jsx component
 	Add Canvas inside the hero component return with ScrollContainer attribute 
 	!!!!! DONT FORGOT TO ADD SPACEMANCANVAS TO THE EXPORT ARRAY IN INDEX.JS !!!!!
 	AND THE IMPORT TOO **
+	ENSURE LOAD IS WORKING WITH REACT-THREE/DERI
 
-ENSURE LOAD IS WORKING WITH REACT-THREE/DERI
+WOKRING GOOD

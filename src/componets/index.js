@@ -1,13 +1,12 @@
 import Contact from "./Contact";
 import Experince from "./Experince";
 import Hero from "./Hero";
+import CanvasLoader from "./Loader";
+import Navbar from "./Navbar";
 import Portfolio from "./Portfolio";
+import Position from "./Position";
 import SpacemanCanvas from "./Spaceman";
-import CanvasLoader from "./Loader"; 
-
 
 export {
-
-    Contact, Experince, Hero, Portfolio, SpacemanCanvas
-
+    CanvasLoader, Contact, Experince, Hero, Navbar, Portfolio, Position, SpacemanCanvas
 };
