@@ -7,3 +7,6 @@ Adding 3d Canvas to hero.jsx component
 	ENSURE LOAD IS WORKING WITH REACT-THREE/DERI
 
 WOKRING GOOD
+
+
+** The init command no longer exists in v4.
