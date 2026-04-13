@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+.parallax__content {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spaceman-object canvas{
+  width: 750px !important;
+  height: 100% !important;
+}

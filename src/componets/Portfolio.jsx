@@ -35,11 +35,17 @@ const ProjectCard = ({
       className={`w-full mt-[-2px] flex flex-col md:flex-row ${isEven ? "md:flex-row" : "md:flex-row-reverse"} gap-5`}
     >
       <div className='relative w-full md:w-3/5'>
-        <img
-          src={image}
-          alt='project_image'
-          className='w-full h-auto object-cover md:rounded-3xl'
-        />
+        {image ? (
+          <img
+            src={image}
+            alt={name}
+            className='w-full h-auto object-cover md:rounded-3xl'
+          />
+        ) : (
+          <div className='w-full aspect-video bg-tertiary md:rounded-3xl flex items-center justify-center'>
+            <span className='text-quaternary text-2xl md:text-4xl font-bold opacity-60'>{name}</span>
+          </div>
+        )}
       </div>
 
       <div className={`w-full md:w-2/5 px-6 md:p-16 flex flex-col justify-center ${isEven ? "text-left md:text-left" : "text-left md:text-right"}`}>
